@@ -24,8 +24,8 @@ namespace FreeBusy.Data
 
             var avilable = BusyTimes.Where(t =>
                 t.From.Date == when.Date &&
-                t.From > when && t.From > when.AddHours(duration)
-                || t.To < when);
+                (t.From > when && t.From > when.AddHours(duration)
+                || t.To < when));
 
             return avilable.Select(time => Employees.FirstOrDefault(e => e.EmployeeId == time.EmployeeId)).ToList();
         }
