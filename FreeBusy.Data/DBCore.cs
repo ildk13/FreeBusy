@@ -5,16 +5,17 @@ using System.Linq;
 
 namespace FreeBusy.Data
 {
-    public class DBCore
+    public class DBCore : IDBCore
     {
-        private IList<Employee> Employees;
-        private IList<BusyTime> BusyTimes;
-        
         public DBCore()
         {
             MapDB();
         }
 
+        public IList<Employee> Employees { get; private set; }
+
+        public IList<BusyTime> BusyTimes { get; private set; }
+        
         public IList<Employee> AvilablEmployees(DateTime when, int duration)
         {
             if (when.Hour is < 8 or > 17)
@@ -28,6 +29,11 @@ namespace FreeBusy.Data
                 || t.To < when));
 
             return avilable.Select(time => Employees.FirstOrDefault(e => e.EmployeeId == time.EmployeeId)).ToList();
+        }
+
+        public IList<BusyTime> GetBusyTimesForEmployee(string employeeId)
+        {
+            return BusyTimes.Where(b => b.EmployeeId == employeeId).OrderBy(b => b.From).ToList();
         }
 
         private void MapDB()
@@ -48,8 +54,7 @@ namespace FreeBusy.Data
                 {
                     EmployeeId = f.Split(";")[0],
                     From = DateTime.Parse(f.Split(";")[1]),
-                    To = DateTime.Parse(f.Split(";")[2]),
-                    Info = f.Split(";")[3]
+                    To = DateTime.Parse(f.Split(";")[2])
                 }).ToList();
         }
     }

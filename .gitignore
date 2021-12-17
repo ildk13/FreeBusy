@@ -5,3 +5,4 @@ FreeBusy.Data/obj/
 TestFile/.vs/
 TestFile/bin/
 TestFile/obj/
+*.user

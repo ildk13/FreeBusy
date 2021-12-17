@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FreeBusy.Data
 {
@@ -9,7 +11,5 @@ namespace FreeBusy.Data
         public string Name { get; set; }
 
         public string Surname { get; set; }
-
-        public IList<BusyTime> BusyTimes { get; set; }
     }
 }

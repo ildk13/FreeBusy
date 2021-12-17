@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using FreeBusy.Api.Services;
 using FreeBusy.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 
 namespace FreeBusy.Api.Controllers
 {
@@ -12,25 +12,32 @@ namespace FreeBusy.Api.Controllers
     [Route("[controller]")]
     public class FreeBusyController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
+        private readonly IFreeBusyService service;
+
+        public FreeBusyController(IFreeBusyService service)
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        private readonly ILogger<FreeBusyController> logger;
-        private readonly DBCore dbCore;
-
-        public FreeBusyController(ILogger<FreeBusyController> logger)
-        {
-            this.logger = logger;
-            dbCore = new DBCore();
-
+            this.service = service;
         }
 
         [HttpGet]
-        public Task<IList<Employee>> Get(string meetingTime, int duration)
+        public ActionResult<IEnumerable<Employee>> Index()
         {
-            return Task.FromResult(dbCore.AvilablEmployees(DateTime.Parse(meetingTime), duration));
+            return service.GetEmployees().ToList();
+        }
+
+        [HttpPost("available")]
+        public ActionResult<IEnumerable<Employee>> Available([FromBody]JObject data)
+        {
+            var time = DateTime.Parse(data["time"].ToString());
+            var duration = (int)data["duration"];
+            return service.GetAvailableEmployees(time, duration).ToList();
+        }
+
+        [HttpPost("busytime")]
+        public ActionResult<IEnumerable<BusyTime>> Busy([FromBody]JObject data)
+        {
+            var employeeId = data["employeeId"].ToString();
+            return service.GetBusyTimesForEmployee(employeeId).ToList();
         }
     }
 }

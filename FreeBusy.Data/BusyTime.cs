@@ -9,7 +9,5 @@ namespace FreeBusy.Data
         public DateTime From { get; set; }
 
         public DateTime To { get; set; }
-
-        public string Info { get; set; }
     }
 }
