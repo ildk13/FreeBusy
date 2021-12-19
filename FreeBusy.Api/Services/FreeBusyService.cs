@@ -14,17 +14,17 @@ namespace FreeBusy.Api.Services
             this.dbCore = dbCore ?? throw new ArgumentNullException(nameof(dbCore));
         }
 
-        public IList<Employee> GetEmployees()
+        public IEnumerable<Employee> GetEmployees()
         {
             return  dbCore.Employees;
         }
 
-        public IList<Employee> GetAvailableEmployees(DateTime time, int duration)
+        public IEnumerable<Employee> GetAvailableEmployees(DateTime time, int duration)
         {
             return dbCore.AvilablEmployees(time, duration);
         }
 
-        public IList<BusyTime> GetBusyTimesForEmployee(string employeeId)
+        public IEnumerable<BusyTime> GetBusyTimesForEmployee(string employeeId)
         {
             return dbCore.GetBusyTimesForEmployee(employeeId);
         }

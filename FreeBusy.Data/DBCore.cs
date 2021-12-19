@@ -18,6 +18,7 @@ namespace FreeBusy.Data
         
         public IList<Employee> AvilablEmployees(DateTime when, int duration)
         {
+            // Working hours
             if (when.Hour is < 8 or > 17)
             {
                 throw new Exception("Beyond work hours");

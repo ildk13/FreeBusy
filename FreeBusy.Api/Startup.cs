@@ -1,3 +1,4 @@
+using FreeBusy.Api.Filters;
 using FreeBusy.Api.Services;
 using FreeBusy.Data;
 using Microsoft.AspNetCore.Builder;
@@ -14,7 +15,7 @@ namespace FreeBusy.Api
         {
             services.AddSingleton<IDBCore, DBCore>();
             services.AddTransient<IFreeBusyService, FreeBusyService>();
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers(opt => opt.Filters.Add(typeof(FreeBusyExceptionFilter))).AddNewtonsoftJson();
             services.AddSwaggerGen(
                 c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "FreeBusy.Api", Version = "v1" }));
         }

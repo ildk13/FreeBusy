@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestFile", "TestFile.csproj", "{9C0E7517-F545-4590-B2C1-9304C895E0DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeBusy.Data", "..\FreeBusy.Data\FreeBusy.Data.csproj", "{D197C1C1-8517-4A81-BE9B-18AD16B3E801}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeBusy.Data", "..\FreeBusy.Data\FreeBusy.Data.csproj", "{D197C1C1-8517-4A81-BE9B-18AD16B3E801}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeBusy.Api", "..\FreeBusy.Api\FreeBusy.Api.csproj", "{449C0DF8-3209-4BA2-9D51-822868C2CA3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeBusy.Api", "..\FreeBusy.Api\FreeBusy.Api.csproj", "{449C0DF8-3209-4BA2-9D51-822868C2CA3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9C0E7517-F545-4590-B2C1-9304C895E0DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C0E7517-F545-4590-B2C1-9304C895E0DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C0E7517-F545-4590-B2C1-9304C895E0DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C0E7517-F545-4590-B2C1-9304C895E0DB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D197C1C1-8517-4A81-BE9B-18AD16B3E801}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D197C1C1-8517-4A81-BE9B-18AD16B3E801}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D197C1C1-8517-4A81-BE9B-18AD16B3E801}.Release|Any CPU.ActiveCfg = Release|Any CPU
