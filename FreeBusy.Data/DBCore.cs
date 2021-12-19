@@ -33,7 +33,7 @@ namespace FreeBusy.Data
                 Select(time => Employees.FirstOrDefault(e => e.EmployeeId == time.EmployeeId)).
                 OrderBy(e => e?.Surname).
                 GroupBy(e => e?.EmployeeId).
-                Select(s => s?.First()).ToList();
+                Select(s => s.First()).ToList();
         }
 
         public IList<BusyTime> GetBusyTimesForEmployee(string employeeId)
