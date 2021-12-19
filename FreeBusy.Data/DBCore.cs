@@ -29,7 +29,11 @@ namespace FreeBusy.Data
                 (t.From > when && t.From >= when.AddHours(duration)
                 || t.To < when));
 
-            return avilable.Select(time => Employees.FirstOrDefault(e => e.EmployeeId == time.EmployeeId)).OrderBy(e => e?.Surname).ToList();
+            return avilable.
+                Select(time => Employees.FirstOrDefault(e => e.EmployeeId == time.EmployeeId)).
+                OrderBy(e => e?.Surname).
+                GroupBy(e => e?.EmployeeId).
+                Select(s => s.First()).ToList();
         }
 
         public IList<BusyTime> GetBusyTimesForEmployee(string employeeId)
