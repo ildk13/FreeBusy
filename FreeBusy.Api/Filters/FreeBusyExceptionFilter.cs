@@ -18,7 +18,6 @@ namespace FreeBusy.Api.Filters
                 context.Exception.Message : 
                 context.Exception.InnerException.Message;
 
-
             context.HttpContext.Response.ContentType = "application/json";
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             context.Result = new JsonResult(

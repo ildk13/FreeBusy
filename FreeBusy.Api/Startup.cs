@@ -33,7 +33,5 @@ namespace FreeBusy.Api
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
-
-        
     }
 }
