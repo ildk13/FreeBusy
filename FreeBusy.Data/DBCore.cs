@@ -26,10 +26,10 @@ namespace FreeBusy.Data
 
             var avilable = BusyTimes.Where(t =>
                 t.From.Date == when.Date &&
-                (t.From > when && t.From > when.AddHours(duration)
+                (t.From > when && t.From >= when.AddHours(duration)
                 || t.To < when));
 
-            return avilable.Select(time => Employees.FirstOrDefault(e => e.EmployeeId == time.EmployeeId)).ToList();
+            return avilable.Select(time => Employees.FirstOrDefault(e => e.EmployeeId == time.EmployeeId)).OrderBy(e => e?.Surname).ToList();
         }
 
         public IList<BusyTime> GetBusyTimesForEmployee(string employeeId)

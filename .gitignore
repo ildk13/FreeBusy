@@ -6,3 +6,4 @@ TestFile/.vs/
 TestFile/bin/
 TestFile/obj/
 *.user
+.vs/
