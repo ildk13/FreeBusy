@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 
 namespace FreeBusy.Api
 {
@@ -15,7 +16,13 @@ namespace FreeBusy.Api
         {
             services.AddSingleton<IDBCore, DBCore>();
             services.AddTransient<IFreeBusyService, FreeBusyService>();
-            services.AddControllers(opt => opt.Filters.Add(typeof(FreeBusyExceptionFilter))).AddNewtonsoftJson();
+            services
+                .AddControllers(opt => opt.Filters.Add(typeof(FreeBusyExceptionFilter)))
+                .AddNewtonsoftJson(opt =>
+                {
+                    opt.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+                    opt.SerializerSettings.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ssZ";
+                });
             services.AddSwaggerGen(
                 c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "FreeBusy.Api", Version = "v1" }));
         }
